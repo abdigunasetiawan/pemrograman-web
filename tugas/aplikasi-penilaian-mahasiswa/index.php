@@ -6,8 +6,13 @@
         $nilai_mk3 = $_POST['mk-3'];
         $status_kelulusan = '';
 
-        // Nilai rata-rata : total_nilai / jumlah_mk
-        $nilai_rata_rata = ($nilai_mk1 + $nilai_mk2 + $nilai_mk3) / 3;
+        $total_nilai = 0;
+
+        for($i = 1; $i <= 3; $i++) {
+            $total_nilai += $_POST['mk-' . $i];
+        }
+
+        $nilai_rata_rata = $total_nilai / 3;
         if($nilai_rata_rata >= 60) {
             $status_kelulusan = 'Lulus 👍🏻';
         }

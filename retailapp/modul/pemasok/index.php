@@ -1,10 +1,8 @@
 <div class="border-bottom d-flex justify-content-between py-3">
     <h4>Data Pemasok</h4>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambah">
-        <i class="bi bi-plus"></i> Tambah Pemasok
-    </button>
-
-    <!-- Modal Tambah -->
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambah"><i class="bi bi-plus"></i>
+        Tambah Pemasok</button>
+    <!-- Modal -->
     <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -30,8 +28,8 @@
                                 required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="status">Status</label>
-                            <select class="form-select" name="status" required>
+                            <label class="form-label" for="statu">Status</label>
+                            <select class="form-select" name="status">
                                 <option value="" selected disabled>Pilih Status</option>
                                 <option value="1">Aktif</option>
                                 <option value="0">Tidak Aktif</option>
@@ -47,8 +45,7 @@
         </div>
     </div>
 </div>
-
-<table id="myTable" class="table">
+<table id="myTable">
     <thead>
         <tr>
             <th>No</th>
@@ -72,22 +69,12 @@
                 <td><?= $row_pemasok['nama_pemasok']; ?></td>
                 <td><?= $row_pemasok['alamat']; ?></td>
                 <td><?= $row_pemasok['telepon']; ?></td>
-                <td>
-                    <span class="badge <?= $row_pemasok['status'] == 1 ? 'text-bg-success' : 'text-bg-danger'; ?>">
-                        <?= $row_pemasok['status'] == 1 ? 'Aktif' : 'Tidak Aktif'; ?>
-                    </span>
+                <td><span
+                        class="badge <?= $row_pemasok['status'] == 1 ? 'text-bg-success' : 'text-bg-danger'; ?>"><?= $row_pemasok['status'] == 1 ? 'Aktif' : 'Tidak Aktif'; ?></span>
                 </td>
                 <td>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $row_pemasok['id_pemasok']; ?>"
-                        class="text-info">
-                        <i class="bi bi-pencil-square"></i>
-                    </a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $row_pemasok['id_pemasok']; ?>"
-                        class="text-danger">
-                        <i class="bi bi-trash-fill"></i>
-                    </a>
-
-                    <!-- Modal Edit -->
+                    <a href="" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $row_pemasok['id_pemasok']; ?>"
+                        class="text-info"><i class="bi bi-pencil-square"></i></a>
                     <div class="modal fade" id="modalEdit<?= $row_pemasok['id_pemasok']; ?>" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -103,25 +90,29 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="namapemasok">Nama Pemasok</label>
                                             <input class="form-control" type="text" name="namapemasok"
+                                                placeholder="Masukkan nama pemasok"
                                                 value="<?= $row_pemasok['nama_pemasok']; ?>" required>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="alamat">Alamat</label>
                                             <input class="form-control" type="text" name="alamat"
-                                                value="<?= $row_pemasok['alamat']; ?>" required>
+                                                placeholder="Masukkan alamat" value="<?= $row_pemasok['alamat']; ?>"
+                                                required>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="telepon">Telepon</label>
                                             <input class="form-control" type="text" name="telepon"
-                                                value="<?= $row_pemasok['telepon']; ?>" required>
+                                                placeholder="Masukkan telepon" value="<?= $row_pemasok['telepon']; ?>"
+                                                required>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="status">Status</label>
-                                            <select class="form-select" name="status" required>
+                                            <label class="form-label" for="statu">Status</label>
+                                            <select class="form-select" name="status">
+                                                <option value="" selected disabled>Pilih Status</option>
                                                 <option value="1" <?= $row_pemasok['status'] == 1 ? 'selected' : ''; ?>>Aktif
                                                 </option>
-                                                <option value="0" <?= $row_pemasok['status'] == 0 ? 'selected' : ''; ?>>Tidak
-                                                    Aktif</option>
+                                                <option value="0" <?= $row_pemasok['status'] == 0 ? 'selected' : ''; ?>>Tidak Aktif
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -134,8 +125,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Modal Hapus -->
+                    <a href="" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $row_pemasok['id_pemasok']; ?>"
+                        class="text-danger"><i class="bi bi-trash-fill"></i></a>
                     <div class="modal fade" id="modalHapus<?= $row_pemasok['id_pemasok']; ?>" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -165,7 +156,6 @@
         ?>
     </tbody>
 </table>
-
 <script>
     $(document).ready(function () {
         $('#myTable').DataTable();
